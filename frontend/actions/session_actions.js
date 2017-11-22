@@ -3,9 +3,9 @@ import * as APIUtil from '../util/APIUtil';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
-  currentUser
+  currentUser: user
 });
 
 export const receiveErrors = errors => ({
@@ -14,23 +14,24 @@ export const receiveErrors = errors => ({
 });
 
 export const signup = user => dispatch => (
-  APIUtil.signup(user).then(user => (
-    dispatch(receiveCurrentUser(user))
-  ), error => (
+  APIUtil.signup(user).then(responseUser => {
+    console.log(responseUser);
+    dispatch(receiveCurrentUser(responseUser))
+  }, error => (
     dispatch(receiveErrors(error.responseJSON))
   ))
 );
 
 export const login = user => dispatch => (
-  APIUtil.login(user).then(user => (
-    dispatch(receiveCurrentUser(user))
-  ), error => (
+  APIUtil.login(user).then(responseUser => {
+    dispatch(receiveCurrentUser(responseUser))
+  }, error => (
     dispatch(receiveErrors(error.responseJSON))
   ))
 );
 
 export const logout = () => dispatch => (
-  APIUtil.logout().then(user => (
+  APIUtil.logout().then(() => (
     dispatch(receiveCurrentUser(null))
   ))
 );

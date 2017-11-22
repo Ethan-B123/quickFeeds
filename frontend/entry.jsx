@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 
 
 import * as APIUtil from "./util/APIUtil"
+import * as SessionActions from "./actions/session_actions"
 import {
   signup,
   login,
@@ -21,11 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const store = configureStore(preloadedState);
 
-  window.APIUtil = APIUtil;
-  window.signup = signup;
-  window.login = login;
-  window.logout = logout;
-  window.dispatch = store.dispatch;
-  window.store = store;
+  // window.SessionActions = SessionActions;
+  // window.APIUtil = APIUtil;
+  // window.signup = signup;
+  // window.login = login;
+  // window.logout = logout;
+  // window.dispatch = store.dispatch;
+  // window.store = store;
   ReactDOM.render(<Root store={store} />, root);
 });

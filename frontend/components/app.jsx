@@ -6,7 +6,8 @@ import SignupForm from "./auth/signup_form_container";
 
 const App = () => (
   <div>
-    <h1>App</h1>
+    <AuthRoute path="/signup" component={SignupForm} />
+    <AuthRoute path="/login" component={SessionForm} />
   </div>
 );
 

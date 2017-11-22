@@ -4,7 +4,12 @@ class Api::SessionsController < ApplicationController
       user_params[:username],
       user_params[:password]
     )
-    render "api/users/show"
+    if @user
+      session[:session_token] = @user.session_token
+      render "api/users/show"
+    else
+      render json: ["Invalid username or password"], status: 404
+    end
   end
 
   def destroy
