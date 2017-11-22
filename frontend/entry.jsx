@@ -28,6 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.login = login;
   // window.logout = logout;
   // window.dispatch = store.dispatch;
-  // window.store = store;
+  window.store = store;
   ReactDOM.render(<Root store={store} />, root);
 });

@@ -1,1 +1,1 @@
-json.extract! @user, :username, :id
+json.partial! '/api/users/user.json.jbuilder', user: @user
