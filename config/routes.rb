@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resource :session, only: %i(create destroy)
     resources :users, only: %i(show create update)
   end
+  root to: "static_pages#root"
 end
