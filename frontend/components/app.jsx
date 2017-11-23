@@ -4,7 +4,7 @@ import { AuthRoute } from "../util/route_util";
 import SessionForm from "./auth/session_form_container";
 import SignupForm from "./auth/signup_form_container";
 import SplashPage from "./splash/splash_page";
-import SplashNav from "./splash/splash_nav";
+import SplashNav from "./splash/splash_nav_container";
 
 const App = () => (
   <div>

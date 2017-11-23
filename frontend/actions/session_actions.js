@@ -35,3 +35,8 @@ export const logout = () => dispatch => (
     dispatch(receiveCurrentUser(null))
   ))
 );
+
+export const clearErrors  = () => ({
+  type: RECEIVE_SESSION_ERRORS,
+  errors: []
+});

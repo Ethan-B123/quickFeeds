@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
         <form>
           <h4>Log in to quickFeeds</h4>
           <ul className="session-error-container">
-            {this.props.errors.map((error) => (<li className="session-error">{error}</li>))}
+            {this.props.errors.map((error) => (<li key={error} className="session-error">{error}</li>))}
           </ul>
           {this.state.showusername ? <label htmlFor="username-input">Username</label> : ""}
           <input id="username-input"

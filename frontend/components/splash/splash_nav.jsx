@@ -2,7 +2,7 @@ import React from "react";
 import LogoutButton from "../auth/logout_button_container";
 import { Link } from "react-router-dom";
 
-export default ({}) => (
+export default ({ clearErrors }) => (
   <nav className="splash-nav">
     <div className="nav-center">
       <div className="nav-icon-container">
@@ -12,8 +12,14 @@ export default ({}) => (
       </div>
       <div className="nav-link-container">
         <LogoutButton />
-        <Link className="nav-link" to="/login">login</Link>
-        <Link className="nav-link" to="/signup">sign up</Link>
+        <Link
+          onClick={clearErrors}
+          className="nav-link"
+          to="/login">login</Link>
+        <Link
+          onClick={clearErrors}
+          className="nav-link"
+          to="/signup">sign up</Link>
       </div>
     </div>
   </nav>
