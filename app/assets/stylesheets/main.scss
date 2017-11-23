@@ -10,6 +10,11 @@ h1 {
   font-weight: 700;
 }
 
-sub {
 
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

@@ -1,9 +1,5 @@
 @import "colors";
 
-body {
-  margin: 0px;
-}
-
 .splash-nav {
   position: fixed;
   left: 0px;
@@ -29,15 +25,20 @@ body {
 }
 
 .nav-link {
+  box-sizing: border-box;
   transition: 0.3s background-color ease;
   padding: 10px 20px;
   border: 1px solid $lightGray;
   border-radius: 5px;
-  margin-right: 5px;
   background-color: $white;
   text-decoration: none;
-  color: #000;
+  color: $darkGray;
+  font-weight: 300;
   display: block;
+}
+
+.nav-link:first-of-type {
+  margin-right: 10px;
 }
 
 .nav-link:hover {

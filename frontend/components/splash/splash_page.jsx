@@ -1,12 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SplashNav from "./splash_nav";
-import LogoutButton from "../auth/logout_button_container";
 
 export default ({}) => (
   <section className="splash-body">
-    <SplashNav />
-    <LogoutButton />
     <div className="splash-center">
 
       <h1>Welcome to quickFeeds</h1>
