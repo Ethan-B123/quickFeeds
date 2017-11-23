@@ -1,8 +1,13 @@
 {
   "name": "quickFeeds",
   "private": true,
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
   "scripts": {
-    "webpack": "webpack --watch"
+    "webpack": "webpack --watch",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
