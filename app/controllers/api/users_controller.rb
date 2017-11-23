@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
     if !@user.save
       render json: @user.errors.full_messages, status: 422
     else
+      session[:session_token] = @user.session_token
       render :show
     end
   end

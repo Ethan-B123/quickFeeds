@@ -6,6 +6,8 @@ import SignupForm from "./auth/signup_form_container";
 import SplashPage from "./splash/splash_page";
 import SplashNav from "./splash/splash_nav_container";
 
+// import { CSSTransitionGroup } from "react-transition-group"
+
 const App = () => (
   <div>
     <SplashNav />
@@ -16,3 +18,11 @@ const App = () => (
 );
 
 export default App;
+
+// <CSSTransitionGroup
+// transitionName="test"
+// transitionEnterTimeout={500}
+// transitionLeaveTimeout={300}>
+// {[
+// ]}
+// </CSSTransitionGroup>
