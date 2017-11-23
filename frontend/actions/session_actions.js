@@ -15,7 +15,6 @@ export const receiveErrors = errors => ({
 
 export const signup = user => dispatch => (
   APIUtil.signup(user).then(responseUser => {
-    console.log(responseUser);
     dispatch(receiveCurrentUser(responseUser))
   }, error => (
     dispatch(receiveErrors(error.responseJSON))
@@ -23,6 +22,16 @@ export const signup = user => dispatch => (
 );
 
 export const login = user => dispatch => (
+  APIUtil.login(user).then(responseUser => {
+    dispatch(receiveCurrentUser(responseUser))
+  }, error => (
+    dispatch(receiveErrors(error.responseJSON))
+  ))
+);
+
+export const loginDemo =
+  (user = {"username": "demo-user", "password": "password"}) =>
+  dispatch => (
   APIUtil.login(user).then(responseUser => {
     dispatch(receiveCurrentUser(responseUser))
   }, error => (

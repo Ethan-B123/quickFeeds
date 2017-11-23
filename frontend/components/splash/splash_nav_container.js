@@ -1,9 +1,14 @@
 import { connect } from "react-redux";
-import { clearErrors } from "../../actions/session_actions";
+import { clearErrors, loginDemo } from "../../actions/session_actions";
 import SplashNav from "./splash_nav";
 
-const mapDispatchToProps = dispatch => ({
-  clearErrors: () => dispatch(clearErrors())
+const mapStateToProps = ({ session }) => ({
+  currentUser: session.currentUser
 });
 
-export default connect(null, mapDispatchToProps)(SplashNav);
+const mapDispatchToProps = dispatch => ({
+  clearErrors: () => dispatch(clearErrors()),
+  loginDemo: () => dispatch(loginDemo())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SplashNav);

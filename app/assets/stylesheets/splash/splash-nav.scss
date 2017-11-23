@@ -35,10 +35,11 @@
   color: $darkGray;
   font-weight: 300;
   display: block;
+  margin-right: 10px;
 }
 
-.nav-link:first-of-type {
-  margin-right: 10px;
+.nav-link:last-of-type {
+  margin-right: 0px;
 }
 
 .nav-link:hover {

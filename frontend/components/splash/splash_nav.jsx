@@ -2,7 +2,19 @@ import React from "react";
 import LogoutButton from "../auth/logout_button_container";
 import { Link } from "react-router-dom";
 
-export default ({ clearErrors }) => (
+const renderDemoButton = (currentUser, loginDemo) => {
+  if (!currentUser) {
+    return (
+      <Link
+      onClick={loginDemo}
+      className="nav-link"
+      to="/">demo</Link>);
+  } else {
+    return "";
+  }
+};
+
+export default ({ clearErrors, loginDemo, currentUser }) => (
   <nav className="splash-nav">
     <div className="nav-center">
       <div className="nav-icon-container">
@@ -12,6 +24,7 @@ export default ({ clearErrors }) => (
       </div>
       <div className="nav-link-container">
         <LogoutButton />
+        {renderDemoButton(currentUser, loginDemo)}
         <Link
           onClick={clearErrors}
           className="nav-link"
