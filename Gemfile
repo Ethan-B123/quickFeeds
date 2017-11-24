@@ -31,6 +31,9 @@ gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 
+gem 'httparty'
+gem 'feedjira'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
