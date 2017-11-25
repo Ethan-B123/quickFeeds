@@ -5,7 +5,9 @@ import ReactDOM from "react-dom";
 
 
 import * as APIUtil from "./util/APIUtil"
+import * as FeedApiUtil from "./util/feed_api_util"
 import * as SessionActions from "./actions/session_actions"
+import * as FeedActions from "./actions/feed_actions"
 import {
   signup,
   login,
@@ -21,13 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
     delete window.currentUser;
   }
   const store = configureStore(preloadedState);
+  window.fetchFeed = FeedApiUtil.fetchFeed;
+  window.fetchAllFeeds = FeedApiUtil.fetchAllFeeds;
+  window.createFeed = FeedApiUtil.createFeed;
 
   // window.SessionActions = SessionActions;
-  // window.APIUtil = APIUtil;
+  window.FeedActions = FeedActions;
   // window.signup = signup;
   // window.login = login;
   // window.logout = logout;
-  // window.dispatch = store.dispatch;
+  window.dispatch = store.dispatch;
   window.store = store;
   ReactDOM.render(<Root store={store} />, root);
 });

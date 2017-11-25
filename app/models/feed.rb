@@ -20,7 +20,8 @@ class Feed < ApplicationRecord
       return exists
     else
       newFeed = Feed.new({ url: url })
-      if newFeed.fetch_data
+      if new_articles = newFeed.fetch_data
+        Article.create(new_articles)
         # newFeed.save
         return newFeed
       end
@@ -28,17 +29,17 @@ class Feed < ApplicationRecord
     false
   end
 
-  def fetch_data(&prc)
+  def fetch_data
     return nil if url.nil?
     begin
       xml = HTTParty.get(url).body
       feed = Feedjira::Feed.parse(xml)
       self.response = feed
       populate_attributes
-      save!
       return_entries = build_articles
+      save!
 
-      return Article.create(return_entries)
+      return return_entries
     rescue
       # use most recent articles from feed
       puts "rescued"
@@ -59,6 +60,14 @@ class Feed < ApplicationRecord
 
   def ensure_id
     id || save
+  end
+
+  def update_articles
+    return nil if !fetch_data
+    if new_articles = build_articles
+      Article.create(new_articles)
+      #TODO delete old
+    end
   end
 
   def build_articles

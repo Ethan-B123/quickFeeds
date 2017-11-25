@@ -2,6 +2,8 @@ class Api::FeedsController < ApplicationController
   def show
     @feed = Feed.find_by(id: params[:id])
     if @feed
+      # get latest articles
+      @feed.update_articles
       @articles = @feed.articles
       render :show
     else

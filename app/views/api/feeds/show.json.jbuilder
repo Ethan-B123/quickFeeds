@@ -1,5 +1,5 @@
 json.set! :feed do
-  json.extract! @feed, :id, :title, :description, :image_url
+    json.extract! @feed, :id, :title, :description, :image_url
 end
 json.set! :articles do
   @articles.each do |article|
@@ -8,7 +8,7 @@ json.set! :articles do
     end
   end
 end
-json.set! :feed_articles do
+json.set! :feedArticles do
   json.set! @feed.id, @articles.map { |article| article.id }
     # (json.array! @articles, :id)
   # end
