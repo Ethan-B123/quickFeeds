@@ -1,5 +1,5 @@
 import React from "react";
-import { merge } from "lodash";
+import SplashNav from "../splash/splash_nav_container";
 
 
 class SessionForm extends React.Component {
@@ -42,6 +42,7 @@ class SessionForm extends React.Component {
   render() {
     return (
       <section className="form-container">
+        <SplashNav />
         <form>
           <h4>Log in to quickFeeds</h4>
           <ul className="session-error-container">

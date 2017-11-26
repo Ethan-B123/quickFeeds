@@ -1,4 +1,5 @@
 import React from "react";
+import SplashNav from "../splash/splash_nav_container";
 
 
 class SessionForm extends React.Component {
@@ -41,6 +42,7 @@ class SessionForm extends React.Component {
   render() {
     return (
       <section className="form-container">
+      <SplashNav />
         <form>
           <h4>Set up an account</h4>
           <ul className="session-error-container">

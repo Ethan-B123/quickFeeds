@@ -1,0 +1,70 @@
+@import "colors";
+@import "vars";
+
+
+.article-index {
+  position: relative;
+  top: $topbarHeight;
+  left: $sidebarWidth;
+  right: 0px;
+  width: calc(100vw - 300px);
+  min-height: calc(100vh - 55px);
+  // min-height: calc(100vh - $topbarHeight);
+  // width: clac(100vw - $sidebarWidth);
+  // background-color: blue;
+}
+
+.backdrop {
+  z-index: -1;
+  position: fixed;
+  top: $topbarHeight;
+  left: $sidebarWidth;
+  right: 0px;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 55px);
+  background-color: white;
+}
+
+.article {
+  width: 100%;
+  min-height: 70px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0px 0px 6px 1px $clearGrey;
+}
+
+.article-image {
+  min-width: 100%;
+  min-height: 100%;
+}
+.article-image-container {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  min-width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+
+.article-enter {
+  opacity: 0;
+}
+
+.article-enter.article-enter-active {
+  opacity: 1;
+  transition: opacity $fadeinTime ease-in-out;
+}
+
+.article-leave {
+  opacity: 1;
+}
+
+.article-leave.article-leave-active {
+  opacity: 0;
+  transition: opacity $fadeoutTime ease-in-out;
+}

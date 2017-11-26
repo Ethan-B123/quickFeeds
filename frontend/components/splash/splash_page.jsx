@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SplashNav from "./splash_nav_container";
 
 export default ({}) => (
   <section className="splash-body">
+  <SplashNav />
     <div className="splash-center">
 
       <h1>Welcome to quickFeeds</h1>

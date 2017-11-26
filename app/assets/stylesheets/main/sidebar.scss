@@ -1,0 +1,11 @@
+@import "colors";
+@import "vars";
+
+.sidebar-container {
+  top: 0px;
+  width: $sidebarWidth;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background-color: #ccc;
+}
