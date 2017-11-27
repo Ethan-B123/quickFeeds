@@ -2,6 +2,7 @@ import React from "react";
 import ArticleIndexItem from "./article_index_item";
 import SideNav from "./sidebar_container";
 import TopNav from "./top_nav_container";
+import LoadingString from "./loading_widget";
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -49,6 +50,9 @@ class ArticleIndex extends React.Component {
         <ArticleIndexItem article={article} key={article.id}/>
       );
     });
+    articles.unshift(
+      <h1 key="title" className="article-head">{this.props.feeds[groupId].title}</h1>
+    )
     articles.push(
       <div key="backdrop" className="backdrop"></div>
     );
@@ -68,7 +72,7 @@ class ArticleIndex extends React.Component {
           {this.getArticlesArray()}
         </ReactCSSTransitionGroup>
         <div className="loading-container">
-          <h1 className="loading-widget">Loading</h1>
+          <LoadingString className="test" />
         </div>
       </div>
     );

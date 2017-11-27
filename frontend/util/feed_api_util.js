@@ -16,7 +16,7 @@ export const fetchAllFeeds = () => (
 
 export const createFeed = (url) => (
   $.ajax({
-    method: "get",
+    method: "post",
     url: "/api/feeds",
     data: { url: url }
   })

@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { asArray } from '../../reducers/selectors';
 import * as FeedActions from "../../actions/feed_actions";
 import ArticleIndex from "./article_index";
 
 const mapStateToProps = ({ feeds, articles, feedArticles }) => ({
-  feeds: asArray(feeds),
+  feeds,
   articles,
   feedArticles
 });

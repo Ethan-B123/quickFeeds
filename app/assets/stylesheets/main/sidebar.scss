@@ -9,3 +9,64 @@
   bottom: 0px;
   background-color: #ccc;
 }
+
+.feed-list {
+  width: 100%;
+  max-width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100% - 65px);
+  max-height: calc(100% - 65px);
+}
+
+.add-feed-button {
+  width: 100%;
+  max-width: 100%;
+  height: 65px;
+}
+
+.form-modal {
+  z-index: 1;
+  opacity: 0;
+  position: fixed;
+  transition: opacity $fadeoutTime ease-in-out;
+}
+
+.form-modal-after-open {
+  opacity: 1;
+}
+.form-modal-before-close {
+  opacity: 0;
+}
+
+.new-feed-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(255,255,255,0.75);
+  transition: opacity $fadeoutTime ease-in-out;
+  opacity: 1;
+}
+.new-feed-form-container > form {
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $lighterGray;
+  padding: 30px;
+  border: 1px solid $lightMidGray;
+  border-radius: 5px;
+}
+.hidden {
+  display: none;
+  height: 0px;
+}
+
+.closing {
+  opacity: 0;
+}

@@ -29,6 +29,22 @@ class Feed < ApplicationRecord
     false
   end
 
+  def get_raw
+    return nil if url.nil?
+    begin
+      xml = HTTParty.get(url).body
+      feed = Feedjira::Feed.parse(xml)
+      self.response = feed
+      populate_attributes
+
+      return feed
+    rescue
+      # use most recent articles from feed
+      puts "rescued"
+      return nil
+    end
+  end
+
   def fetch_data
     return nil if url.nil?
     begin

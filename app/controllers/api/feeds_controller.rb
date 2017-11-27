@@ -7,16 +7,17 @@ class Api::FeedsController < ApplicationController
       @articles = @feed.articles
       render :show
     else
-      render json: ["unable to find feed with id provided"]
+      render json: ["unable to find feed with id provided"], status: 401
     end
   end
 
   def create
     @feed = Feed.make_with_url(params[:url])
     if @feed
+      @articles = @feed.articles
       render :show
     else
-      render json: ["unable to create feed with given url"]
+      render json: ["unable to create feed with given url"], status: 422
     end
   end
 

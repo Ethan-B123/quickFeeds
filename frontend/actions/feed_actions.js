@@ -14,15 +14,21 @@ export const receiveFeed = (response) => ({
   response
 });
 
-export const receiveFeedErrors = (errors) => ({
+export const receiveFeedErrors = (res) => ({
   type: RECEIVE_FEED_ERRORS,
-  errors
+  errors: res.responseJSON
 });
 
-export const createFeed = (url) => dispatch => (
-  FeedApiUtil.createFeed(url.then).then(
-    (response) => (dispatch(receiveFeed(response))),
-    (errors) => (dispatch(receiveFeedErrors(response)))
+export const createFeed = (url, successCb, failCb) => dispatch => (
+  FeedApiUtil.createFeed(url).then(
+    (response) => {
+      dispatch(receiveFeed(response));
+      successCb(response)
+    },
+    (errors) => {
+      dispatch(receiveFeedErrors(errors));
+      failCb(errors)
+    }
   )
 )
 
