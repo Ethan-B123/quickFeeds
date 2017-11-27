@@ -16,7 +16,8 @@
   left: $sidebarWidth;
   top: 0px;
   right: 0px;
-  background-color: pink;
+  background-color: $white;
+  border-bottom: 1px solid $lightGray;
   display: flex;
   justify-content: flex-end;
 }

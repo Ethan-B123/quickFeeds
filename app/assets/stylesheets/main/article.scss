@@ -3,9 +3,36 @@
 
 
 .article-head {
-  padding-left: 22px;
+  padding: 0px 22px;
   margin-top: 52px;
   margin-bottom: 35px;
+}
+
+.feed-list {
+  padding: 40px 0px;
+  box-sizing: border-box;
+}
+
+.feed-list li {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.feed-list a {
+  box-sizing: border-box;
+  display: block;
+  padding: 2px 20px;
+  text-decoration: none;
+  color: $midGray;
+  cursor: pointer;
+  font-weight: 300;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.feed-list a:hover {
+  background-color: $lightMidGray;
 }
 
 .article-index {

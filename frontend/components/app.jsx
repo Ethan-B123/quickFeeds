@@ -9,19 +9,10 @@ import ArticleIndex from "./main/article_index_container";
 
 // import { CSSTransitionGroup } from "react-transition-group"
 
-const Test2 = (props) => {
-  debugger;
-  return (
-    <div>
-      <h1>wow</h1>
-    </div>
-  )
-};
-
 const App = () => (
   <div>
     <Switch>
-      <Route exact path="/" component={SplashPage} />
+      <AuthRoute exact path="/" component={SplashPage} />
       <AuthRoute path="/signup" component={SignupForm} />
       <AuthRoute path="/login" component={SessionForm} />
       <ProtectedRoute path="/:groupType/:groupId" component={ArticleIndex} />
