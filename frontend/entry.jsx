@@ -8,6 +8,8 @@ import * as APIUtil from "./util/APIUtil"
 import * as FeedApiUtil from "./util/feed_api_util"
 import * as SessionActions from "./actions/session_actions"
 import * as FeedActions from "./actions/feed_actions"
+import * as CollectionActions from "./actions/collection_actions";
+
 import {
   signup,
   login,
@@ -22,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     preloadedState = { session: { currentUser: window.currentUser } };
     delete window.currentUser;
   }
+  if (window.currentUser) {
+    preloadedState = { session: { currentUser: window.currentUser } };
+    delete window.currentUser;
+  }
   const store = configureStore(preloadedState);
   window.fetchFeed = FeedApiUtil.fetchFeed;
   window.fetchAllFeeds = FeedApiUtil.fetchAllFeeds;
@@ -29,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // window.SessionActions = SessionActions;
   window.FeedActions = FeedActions;
+  window.CollectionActions = CollectionActions;
   // window.signup = signup;
   // window.login = login;
   // window.logout = logout;

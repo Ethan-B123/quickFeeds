@@ -10,6 +10,7 @@ class Api::CollectionsController < ApplicationController
   def show
     if @collection = Collection.find_by(id: params[:id])
       @feeds = @collection.feeds
+      render :show
     else
       render json: ["unable to find collection by id"], status: 401
     end
@@ -19,6 +20,7 @@ class Api::CollectionsController < ApplicationController
     @collection = Collection.new(collection_params)
     @collection.user_id = current_user && current_user.id
     if @collection.save
+      @feeds = @collection.feeds
       render :show
     else
       render json: @collection.errors.full_messages, status: 422
@@ -29,6 +31,7 @@ class Api::CollectionsController < ApplicationController
     if @collection = Collection.find_by(id: params[:id]) &&
       @collection.user_id == (current_user && current_user.id) &&
       @collection.update_attributes(collection_params)
+      @feeds = @collection.feeds
       render :show
     else
       err = @collection ?
@@ -39,7 +42,7 @@ class Api::CollectionsController < ApplicationController
 
   def destroy
     if @collection = Collection.find_by(id: params[:id])
-      render json: ["unable to return show Collection with dependents"]
+      render :index
     else
       render json: ["unable to find collection by id"], status: 401
     end
@@ -48,6 +51,10 @@ class Api::CollectionsController < ApplicationController
   private
 
   def collection_params
+    params.each do |k,v|
+      puts k
+      puts v
+    end
     params.require(:collection).permit(:name)
   end
 
