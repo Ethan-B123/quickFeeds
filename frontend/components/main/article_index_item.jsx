@@ -1,14 +1,17 @@
 import React from 'react';
 
-export default ({key, article}) => {
+export default ({key, article, openFn}) => {
   // const classString = classes.join(" ");
   return (
-    <li className="article" key={key}>
+    <li onClick={openFn(article.id)} className="article" key={key}>
       <div
         style={{backgroundImage: `url(${article.image})`}}
         className="article-image-container">
       </div>
-      <span>{article.title}</span>
+      <div className="article-item-right-container">
+        <h3>{article.title}</h3>
+        <sub>{article.publish_date}</sub>
+      </div>
     </li>
   );
 };

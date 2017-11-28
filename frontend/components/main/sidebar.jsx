@@ -24,11 +24,6 @@ class Sidebar extends React.Component {
         ))
     );
   }
-  // <li key={feed.id}>
-  // <Link to={"/feed/" + feed.id}>
-  // {feed.title}
-  // </Link>
-  // </li>
 
   openForm () {
     this.setState({ formOpen: true });
@@ -49,7 +44,7 @@ class Sidebar extends React.Component {
           className="add-feed-button">+ ADD FEED</button>
         <Modal
           isOpen={this.state.formOpen}
-          closeTimeoutMS={300}
+          closeTimeoutMS={500}
           overlayClassName={{
               base: 'overlay',
               afterOpen: 'overlay-after-open',

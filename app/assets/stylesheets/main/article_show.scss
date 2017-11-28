@@ -1,0 +1,112 @@
+@import "vars";
+@import "colors";
+
+.article-show {
+  position: fixed;
+  background-color: $white;
+  left: 150px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  transform: translateX(0px);
+  padding: 0px 90px;
+  overflow-x: scroll;
+  border-left: 1px solid #eee;
+  z-index: 2;
+}
+
+.article-show-top {
+  max-height: 50px;
+
+}
+
+.article-show-body {
+  height: calc(100% - 86px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.article-show > .article-show-body > h1 {
+  margin-top: 30px;
+}
+.article-show > .article-show-body > p {
+  margin-top: 30px;
+}
+.article-show > .article-show-body > div {
+  margin-top: 30px;
+}
+.article-show > .article-show-body > sub {
+  margin-top: 30px;
+}
+
+.link-button {
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  bottom: 28px;
+  text-align: center;
+}
+
+.show-image-container {
+  height: 30vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+}
+.article-show-enter {
+  opacity: 0;
+  transform: translateX(100vw);
+}
+
+.article-show-enter.article-show-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition:
+  opacity $fadeinTime ease-in-out,
+  transform $fadeinTime ease-in-out;
+}
+
+.article-show-leave {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.article-show-leave.article-show-leave-active {
+  opacity: 0;
+  transform: translateX(100vw);
+  transition:
+  opacity $fadeoutTime ease-in-out,
+  transform $fadeoutTime ease-in-out;
+}
+
+.show-bg {
+  position: fixed;
+  background-color: $clearWhite;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1;
+}
+
+.show-bg-enter {
+  opacity: 0;
+}
+
+.show-bg-enter.show-bg-enter-active {
+  opacity: 1;
+  transition:
+  opacity $fadeinTime ease-in-out;
+}
+
+.show-bg-leave {
+  opacity: 1;
+}
+
+.show-bg-leave.show-bg-leave-active {
+  opacity: 0;
+  transition:
+  opacity $fadeoutTime ease-in-out;
+}
