@@ -32,6 +32,10 @@ class AddFeed extends React.Component {
     const classArr = Array.from(target.classList);
     if (classArr.includes("close-on-click")) {
       this.props.closeFn();
+      setTimeout(() => {
+        console.log(this.props);
+        this.props.clearErrors();
+      }, fadeoutLength);
     }
   }
 

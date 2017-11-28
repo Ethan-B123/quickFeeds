@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default ({ feed }) => {
 
   return (
-    <li key={feed.id}>
+    <li>
       <Link to={"/feed/" + feed.id}>
         {feed.title}
       </Link>

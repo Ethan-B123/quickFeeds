@@ -19,6 +19,11 @@ export const receiveFeedErrors = (res) => ({
   errors: res.responseJSON
 });
 
+export const clearFeedErrors = (res) => ({
+  type: RECEIVE_FEED_ERRORS,
+  errors: []
+});
+
 export const createFeed = (url, successCb, failCb) => dispatch => (
   FeedApiUtil.createFeed(url).then(
     (response) => {
@@ -31,6 +36,8 @@ export const createFeed = (url, successCb, failCb) => dispatch => (
     }
   )
 )
+
+export const clearErrors = () => clearFeedErrors([]);
 
 export const fetchAllFeeds = () => dispatch => (
   FeedApiUtil.fetchAllFeeds().then(

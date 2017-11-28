@@ -10,7 +10,8 @@ const mapStateToProps = ({ errors }) => ({
 const mapDispatchToProps = (dispatch) => ({
   createFeed:
     (url, successCb, failCb) =>
-    dispatch(FeedActions.createFeed(url, successCb, failCb))
+    dispatch(FeedActions.createFeed(url, successCb, failCb)),
+  clearErrors: () => dispatch(FeedActions.clearErrors())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddFeed));

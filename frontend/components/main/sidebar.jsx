@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
   renderFeeds() {
     return (
         this.props.feeds.map((feed)=>(
-            <FeedListItem feed={feed} />
+            <FeedListItem key={feed.id} feed={feed} />
         ))
     );
   }
