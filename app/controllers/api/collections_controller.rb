@@ -1,4 +1,12 @@
 class Api::CollectionsController < ApplicationController
+  def index
+    if current_user
+      render :index
+    else
+      render json: ["no user logged in"], status: 401
+    end
+  end
+
   def show
     if @collection = Collection.find_by(id: params[:id])
       @feeds = @collection.feeds
@@ -24,7 +32,7 @@ class Api::CollectionsController < ApplicationController
       render :show
     else
       err = @collection ?
-        @collection.errors.full_messages || ["collection not found"]
+        @collection.errors.full_messages : ["collection not found"]
       render json: err, status: 422
     end
   end
