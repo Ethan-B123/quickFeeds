@@ -1,14 +1,23 @@
 import React from "react";
 import AddFeed from "./add_feed_container";
+import AddCollection from "./add_collection_container";
+import EditCollection from "./edit_collection_container";
 import Modal from "react-modal";
 import FeedListItem from "./feed_list_item";
+import CollectionListItem from "./collection_list_item";
 
 class Sidebar extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { formOpen: false }
+    this.state = {
+      feedFormOpen: false,
+      newCollectionFormOpen: false,
+      editCollectionFormOpen: false,
+      currentCollectionId: undefined
+    }
     this.props.fetchAllFeeds();
+    this.props.fetchCollections();
   }
 
   selectFeed(id) {
@@ -19,31 +28,57 @@ class Sidebar extends React.Component {
 
   renderFeeds() {
     return (
-        this.props.feeds.map((feed)=>(
-            <FeedListItem key={feed.id} feed={feed} />
-        ))
+      this.props.feeds.map((feed)=>(
+        <FeedListItem key={feed.id} feed={feed} />
+      ))
     );
   }
 
-  openForm () {
-    this.setState({ formOpen: true });
+  renderCollections() {
+    // debugger;
+    return (
+      this.props.collections.map((collection)=>(
+        <CollectionListItem
+        key={collection.id}
+        collection={collection}
+        feeds={this.props.feedObjects}
+        openEditor={this.openForm("editCollection", collection.id).bind(this)} />
+      ))
+    );
   }
 
-  closeForm () {
-    this.setState({ formOpen: false });
+  openForm (type, collectionId) {
+    const statePiece = type + "FormOpen";
+    return () => this.setState({
+      currentCollectionId: collectionId,
+      [statePiece]: true });
+  }
+
+  closeForm (type) {
+    const statePiece = type + "FormOpen";
+    return () => this.setState({
+      currentCollectionId: undefined,
+      [statePiece]: false });
   }
 
   render() {
+    const newCollectionFormOpen = this.state.newCollectionFormOpen;
+    const currentCollectionId = this.state.currentCollectionId;
+    // <ul className="feed-list">
+    // <li onClick={this.openForm("newCollection").bind(this)}>
+    // <a>Add Collection</a>
+    // </li>
+    // {this.renderFeeds()}
+    // </ul>
     return (
       <div className="sidebar-container">
         <ul className="feed-list">
-
-          {this.renderFeeds()}
+          {this.renderCollections()}
         </ul>
-        <button onClick={this.openForm.bind(this)}
+        <button onClick={this.openForm("feed").bind(this)}
           className="add-feed-button">+ ADD FEED</button>
         <Modal
-          isOpen={this.state.formOpen}
+          isOpen={this.state.feedFormOpen}
           closeTimeoutMS={500}
           overlayClassName={{
               base: 'overlay',
@@ -55,7 +90,41 @@ class Sidebar extends React.Component {
             afterOpen: 'form-modal-after-open',
             beforeClose: 'form-modal-before-close'
           }}>
-          <AddFeed closeFn={this.closeForm.bind(this)} />
+          <AddFeed closeFn={this.closeForm("feed").bind(this)} />
+        </Modal>
+
+        <Modal
+          isOpen={this.state.TODO}
+          closeTimeoutMS={500}
+          overlayClassName={{
+              base: 'overlay',
+              afterOpen: 'overlay-after-open',
+              beforeClose: 'overlay-before-close'
+            }}
+          className={{
+            base: 'form-modal',
+            afterOpen: 'form-modal-after-open',
+            beforeClose: 'form-modal-before-close'
+          }}>
+          <AddCollection closeFn={this.closeForm("newCollection").bind(this)} />
+        </Modal>
+
+        <Modal
+          isOpen={ Boolean(this.state.currentCollectionId) }
+          closeTimeoutMS={500}
+          overlayClassName={{
+              base: 'overlay',
+              afterOpen: 'overlay-after-open',
+              beforeClose: 'overlay-before-close'
+            }}
+          className={{
+            base: 'form-modal',
+            afterOpen: 'form-modal-after-open',
+            beforeClose: 'form-modal-before-close'
+          }}>
+          <EditCollection
+            collectionId={this.state.currentCollectionId}
+            closeFn={this.closeForm("editCollection").bind(this)} />
         </Modal>
       </div>
     );

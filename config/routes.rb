@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :users, only: %i(show create update)
     resources :feeds, only: %i(show create index)
     resources :collections, only: %i(index show create update destroy)
-    resources :collection_feeds, only: %i(destroy create)
+    resources :collection_feeds, only: %i(create)
   end
+  delete 'api/collection_feeds',
+    to: 'api/collection_feeds#destroy',
+    defaults: { format: :json }
   root to: "static_pages#root"
 end

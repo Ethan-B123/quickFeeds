@@ -13,14 +13,16 @@ export const receiveCollection = (collection) => ({
   collection
 });
 
-export const createCollection = (collection) => dispatch => (
+export const createCollection = (collection, successCb, failCb) => dispatch => (
   collectionApiUtil.createCollection(collection).then(
     (response) => {
       dispatch(receiveCollection(response));
+      successCb && successCb();
     },
     (errors) => {
-      console.log("couldn't receiveAllCollections");
+      console.log("couldn't createCollection");
       console.log(errors);
+      failCb && failCb()
     }
   )
 )
@@ -50,7 +52,7 @@ export const addFeed = (collectionFeed) => dispatch => (
   )
 );
 
-export const removeFeed = (id) => dispatch => (
+export const removeFeed = (collectionFeed) => dispatch => (
   collectionApiUtil.removeFeed(collectionFeed).then(
     (response) => dispatch( receiveCollection(response) )
   )

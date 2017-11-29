@@ -29,9 +29,10 @@ export const addFeed = (collection_feed) => (
   })
 );
 
-export const removeFeed = (id) => (
+export const removeFeed = (collection_feed) => (
   $.ajax({
     method: "delete",
-    url: "/api/collection_feeds/" + id
+    url: "/api/collection_feeds/",
+    data: { collection_feed }
   })
 );

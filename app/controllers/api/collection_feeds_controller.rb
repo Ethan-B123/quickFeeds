@@ -11,7 +11,7 @@ class Api::CollectionFeedsController < ApplicationController
   end
 
   def destroy
-    if @collection_feed = Collection.find_by(id: params[:id])
+    if @collection_feed = CollectionFeed.find_by(collection_params)
       @collection_feed = @collection_feed.destroy
       @collection = @collection_feed.collection
       @feeds = @collection.feeds

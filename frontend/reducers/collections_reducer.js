@@ -10,8 +10,10 @@ export default (state = {}, action) => {
     return action.collections;
       break;
     case RECEIVE_COLLECTION:
-    const collectionId = action.collection.id
-    return merge({}, state, {[collectionId]: action.collection});
+    const collectionId = action.collection.id;
+    const oldState = merge({}, state);
+    oldState[collectionId] = action.collection;
+    return oldState;
       break;
     default:
       return state;

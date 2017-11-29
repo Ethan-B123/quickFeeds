@@ -1,5 +1,13 @@
 @import "colors";
 
+
+.included-feed {
+  background-color: green;
+}
+.excluded-feed {
+  background-color: red;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
