@@ -1,5 +1,7 @@
 import React from "react";
 import FeedListItem from "./feed_list_item";
+import { withRouter, Link } from "react-router-dom";
+
 
 class CollectionListItem extends React.Component {
 
@@ -42,7 +44,7 @@ class CollectionListItem extends React.Component {
             aria-hidden="true"></i>
           </div>
           <div className="collection-title">
-            <span>{collection.name}</span>
+            <Link to={"/collection/" + collection.id}>{collection.name}</Link>
           </div>
 
           <div
@@ -61,7 +63,7 @@ class CollectionListItem extends React.Component {
   }
 }
 
-export default CollectionListItem;
+export default withRouter(CollectionListItem);
 // export default ({ feeds, collection, openEditor }) => {
 //
 // }

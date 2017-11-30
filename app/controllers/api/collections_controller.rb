@@ -51,10 +51,6 @@ class Api::CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.each do |k,v|
-      puts k
-      puts v
-    end
     params.require(:collection).permit(:name)
   end
 

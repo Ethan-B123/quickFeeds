@@ -13,24 +13,53 @@ class ArticleIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    const groupId = this.props.match.params.groupId
     this.state = {
+      groupType: undefined,
       groupId: undefined,
       readyForArticles: true
     };
+  }
+
+  componentWillMount() {
+    const groupId = this.props.match.params.groupId
     this.onFeedChange(groupId);
   }
 
   componentWillReceiveProps(newProps) {
     const groupId = this.props.match.params.groupId
+    const groupType = this.props.match.params.groupType
     const newGroupId = newProps.match.params.groupId
-    if (groupId !== newGroupId) {
-      this.onFeedChange(newGroupId);
+    const newGroupType = newProps.match.params.groupType
+    if (groupType !== newGroupType || groupId !== newGroupId) {
+      if (newGroupType === "feed") {
+        this.onFeedChange(newGroupId);
+        console.log(this.props);
+      } else {
+        this.onCollectionChange(newGroupId)
+      }
     }
   }
 
+  onCollectionChange(newGroupId) {
+    this.setState({
+      groupType: "collection",
+      groupId: undefined,
+      readyForArticles: false });
+    setTimeout(() => {
+      this.setState({ readyForArticles: true });
+    }, fadeoutLength);
+    // TODO: this.props.fetchColectionData().then(
+    this.props.fetchFeedData(newGroupId).then(
+      () => this.setState({ groupId: newGroupId })
+    );
+
+  }
+
   onFeedChange(newGroupId) {
-    this.setState({ groupId: undefined, readyForArticles: false });
+    this.setState({
+      groupType: "feed",
+      groupId: undefined,
+      readyForArticles: false });
     setTimeout(() => {
       this.setState({ readyForArticles: true });
     }, fadeoutLength);
@@ -47,12 +76,37 @@ class ArticleIndex extends React.Component {
     this.props.history.push({ search: "" });
   }
 
-  getArticlesArray() {
+  getCollectionArray(collection) {
+    const allFeeds = this.props.feeds;
+    const feedArticles = this.props.feedArticles;
+    const articles = this.props.articles;
+    const feeds = collection.feeds.map((feedId) => allFeeds[feedId]);
+    let articlesArr = [];
+    feeds.forEach((feed) => {
+      const newArticles = feedArticles[feed.id.toString()].map((articleId) =>(
+        articles[articleId]
+      ));
+      articlesArr += newArticles
+    });
+
+    articlesArr.sort((a,b) => (
+      b.publish_date - a.publish_date
+    ));
+
+    return articlesArr.map((article) => (
+      <ArticleIndexItem
+        openFn={this.openShow.bind(this)}
+        article={article} key={article.id}/>
+    ));
+  }
+
+  getFeedArray() {
     const groupId = this.state.groupId;
     const readyForArticles = this.state.readyForArticles;
     if (groupId === undefined || !readyForArticles) {
       return [];
     }
+
     // debugger;
     const articles = this.props.feedArticles[groupId].map((articleId)=>{
       const article = this.props.articles[articleId];
@@ -92,7 +146,7 @@ class ArticleIndex extends React.Component {
   render() {
     const articleShowArr = this.articleShow();
     const showBgArr = articleShowArr.length === 1 ?
-      [<div onClick={this.closeShow.bind(this)}
+      [<div key="background" onClick={this.closeShow.bind(this)}
         className="show-bg"></div>] : [];
     return (
       <div className="article-index">
@@ -104,7 +158,7 @@ class ArticleIndex extends React.Component {
           transitionName="article"
           transitionEnterTimeout={300}
           transitionLeaveTimeout={200}>
-          {this.getArticlesArray()}
+          {this.getFeedArray()}
           </ReactCSSTransitionGroup>
           <ReactCSSTransitionGroup
           component="div"

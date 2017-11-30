@@ -22,7 +22,7 @@ export default ({ article, key }) => {
 
         </div>
         <p>{article.description}</p>
-        <sub>{article.publish_date}</sub>
+        <sub>{article.publish_date.toLocaleString()}</sub>
         </div>
       </div>
       <a className="nav-link link-button" target="_blank" href={article.url}>VISIT WEBSITE</a>

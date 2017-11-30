@@ -3,10 +3,11 @@ import { withRouter } from "react-router-dom";
 import * as FeedActions from "../../actions/feed_actions";
 import ArticleIndex from "./article_index";
 
-const mapStateToProps = ({ feeds, articles, feedArticles }) => ({
+const mapStateToProps = ({ feeds, articles, feedArticles, collections }) => ({
   feeds,
   articles,
-  feedArticles
+  feedArticles,
+  collections
 });
 
 const mapDispatchToProps = (dispatch) => ({
