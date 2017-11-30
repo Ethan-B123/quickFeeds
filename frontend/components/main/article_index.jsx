@@ -48,7 +48,7 @@ class ArticleIndex extends React.Component {
     setTimeout(() => {
       this.setState({ readyForArticles: true });
     }, fadeoutLength);
-    // TODO: this.props.fetchColectionData().then(
+    // TODO: this.props.fetchColectionData(collectionId).then(
     this.props.fetchFeedData(newGroupId).then(
       () => this.setState({ groupId: newGroupId })
     );

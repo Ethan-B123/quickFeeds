@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :collections, only: %i(index show create update destroy)
     resources :collection_feeds, only: %i(create)
   end
+  get 'api/collections/full/:id',
+    to: 'api/collections#full',
+    defaults: { format: :json }
   delete 'api/collection_feeds',
     to: 'api/collection_feeds#destroy',
     defaults: { format: :json }
