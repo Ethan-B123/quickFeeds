@@ -50,9 +50,10 @@ class AddCollection extends React.Component {
       <div onClick={tryCloseClick} className="new-feed-form-container close-on-click">
         <div className="full-bar">
         <div className="edit-collection-form">
-          <h3 className="col-edit-title">New Collection Name</h3>
+          <h3 className="col-edit-title">New Collection</h3>
           <div>{ loading ? "Loading" : "" }</div>
           <input disabled={loading} onChange={updateInput}
+            placeholder="Collection Name"
             type="text" id="new-collection-input"
           />
           <button disabled={loading} onClick={tryMakeCollection} type="submit">Add Collection</button>

@@ -21,8 +21,18 @@
 }
 .edit-collection-form button {
   min-height: 30px;
+  /* box-sizing: border-box; */
+  margin: 0;
+  width: 100%;
 }
-
+.edit-collection-form input {
+  margin-bottom: 11px;
+  /* margin: 5px; */
+  width: 94%;
+  text-align: center;
+  padding: 5px;
+  font-size: 13px;
+}
 .top-nav button:hover, .edit-collection-form button:hover {
   cursor: pointer;
   background-color: $lightGray;
