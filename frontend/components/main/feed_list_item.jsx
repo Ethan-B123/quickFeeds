@@ -5,7 +5,7 @@ export default ({ feed }) => {
 
   return (
     <li>
-      <Link to={"/feed/" + feed.id}>
+      <Link className="feed" to={"/feed/" + feed.id}>
         {feed.title}
       </Link>
     </li>

@@ -49,9 +49,11 @@ class Sidebar extends React.Component {
 
   openForm (type, collectionId) {
     const statePiece = type + "FormOpen";
-    return () => this.setState({
+    return () => {
+      this.setState({
       currentCollectionId: collectionId,
       [statePiece]: true });
+    };
   }
 
   closeForm (type) {
@@ -61,18 +63,21 @@ class Sidebar extends React.Component {
       [statePiece]: false });
   }
 
+  // <ul className="feed-list">
+  // <li onClick={this.openForm("newCollection").bind(this)}>
+  // <a>Add Collection</a>
+  // </li>
+  // {this.renderFeeds()}
+  // </ul>
   render() {
     const newCollectionFormOpen = this.state.newCollectionFormOpen;
     const currentCollectionId = this.state.currentCollectionId;
-    // <ul className="feed-list">
-    // <li onClick={this.openForm("newCollection").bind(this)}>
-    // <a>Add Collection</a>
-    // </li>
-    // {this.renderFeeds()}
-    // </ul>
     return (
       <div className="sidebar-container">
         <ul className="feed-list">
+          <li onClick={this.openForm("newCollection").bind(this)}>
+            <span className="add-collection-link">+ Create Collection</span>
+          </li>
           {this.renderCollections()}
         </ul>
         <button onClick={this.openForm("feed").bind(this)}
@@ -94,7 +99,7 @@ class Sidebar extends React.Component {
         </Modal>
 
         <Modal
-          isOpen={this.state.TODO}
+          isOpen={this.state.newCollectionFormOpen}
           closeTimeoutMS={500}
           overlayClassName={{
               base: 'overlay',

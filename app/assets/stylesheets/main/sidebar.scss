@@ -19,6 +19,127 @@
   max-height: calc(100% - 65px);
 }
 
+
+
+.feed-list {
+  padding: 40px 0px;
+  box-sizing: border-box;
+}
+
+.feed-list li {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.feed-list a {
+  box-sizing: border-box;
+  display: block;
+  padding: 2px 20px;
+  text-decoration: none;
+  color: $midGray;
+  cursor: pointer;
+  font-weight: 300;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+// .feed-list li:first-of-type a:hover {
+//   color: $white;
+//   background-color: $teal;
+// }
+// .feed-list li:first-of-type a{
+//   // text-align: center;
+//   margin-bottom: 10px;
+//   padding: 10px 20px;
+// }
+
+.feed-list a:hover {
+  background-color: $lightMidGray;
+}
+.shrinker a:hover {
+  background-color: $clearWhite
+}
+
+.add-collection-link {
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: $midGray;
+  cursor: pointer;
+  font-weight: 300;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin-bottom: 40px;
+  border-top: 1px solid $lightMidGray;
+  border-bottom: 1px solid $lightMidGray;
+}
+.add-collection-link:hover {
+  content: "test";
+  color: $white;
+  background-color: $teal;
+}
+.turn-90 {
+  transform: rotate(0deg);
+  transition: transform 250ms ease-in-out;
+}
+.icon:before {
+  // transition: transform 250ms ease-in-out,
+  //   background-color 250ms ease-in-out;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  padding: 3px;
+  border-radius: 10px;
+  display: block;
+  // transform: scale(1.2);
+}
+.icon:hover.icon:before {
+  color: $white;
+}
+.turned {
+  transform: rotate(90deg);
+}
+.single-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.no-hover:hover {
+  background-color: $clearWhite;
+  cursor: default;
+}
+.shrinker {
+  overflow: scroll;
+  background-color: $lighterGray;
+  height: 100px;
+  transition: height 250ms ease-in-out;
+}
+
+.closed {
+  height: 0px;
+  overflow: hidden;
+}
+
+a.collection-item {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.collection-title {
+  padding: 0px 6px;
+  flex-grow: 1;
+  max-width: 178px;
+}
+
+.feed-list a.feed {
+  padding-left: 40px;
+}
+
 .add-feed-button {
   width: 100%;
   max-width: 100%;
