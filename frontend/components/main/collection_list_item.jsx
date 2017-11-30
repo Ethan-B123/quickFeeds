@@ -33,7 +33,7 @@ class CollectionListItem extends React.Component {
     }
     return (
       <li className="collection-item-container">
-        <a className="collection-item" >
+        <div className="collection-item top-level-link" >
           <div
           onClick={toggleOpen}
           className="single-center">
@@ -54,7 +54,7 @@ class CollectionListItem extends React.Component {
             className="fa fa-cog icon"
             aria-hidden="true"></i>
           </div>
-        </a>
+        </div>
         <ul className={this.state.closed ? "shrinker closed" : "shrinker"}>
           {feedList}
         </ul>

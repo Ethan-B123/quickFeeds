@@ -47,20 +47,24 @@ class EditCollection extends React.Component {
 
     return (
       <div onClick={tryCloseClick} className="new-feed-form-container close-on-click">
-        <form>
-          <label htmlFor="new-feed-input">Edit {collection.name}:</label>
-          <ul>
-            { feedKeys.map((feedKey) => (
-              collection.feeds.includes(parseInt(feedKey)) ?
-              <li className="included-feed"
-              onClick={this.toggleFeed(feedKey).bind(this)}
-              key={feedKey + "y"}>{feeds[feedKey].title}</li> :
-              <li className="excluded-feed"
-              onClick={this.toggleFeed(feedKey).bind(this)}
-              key={feedKey + "n"}>{feeds[feedKey].title}</li> )) }
-          </ul>
-
-        </form>
+        <div className="full-bar">
+          <div className="edit-collection-form">
+            <h3 className="col-edit-title">Edit feeds for {collection.name}:</h3>
+            <ul className="coll-feed-container">
+              { feedKeys.map((feedKey) => (
+                collection.feeds.includes(parseInt(feedKey)) ?
+                <li className="included-feed coll-feed"
+                onClick={this.toggleFeed(feedKey).bind(this)}
+                key={feedKey + "y"}>
+                <span>{feeds[feedKey].title}</span>
+                <i className="fa fa-check center" aria-hidden="true"></i>
+                </li> :
+                <li className="excluded-feed coll-feed"
+                onClick={this.toggleFeed(feedKey).bind(this)}
+                key={feedKey + "n"}>{feeds[feedKey].title}</li> )) }
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }

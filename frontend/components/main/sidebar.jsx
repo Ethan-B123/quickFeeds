@@ -42,9 +42,30 @@ class Sidebar extends React.Component {
         key={collection.id}
         collection={collection}
         feeds={this.props.feedObjects}
-        openEditor={this.openForm("editCollection", collection.id).bind(this)} />
+        openEditor={this.openColEdit("editCollection", collection.id).bind(this)} />
       ))
     );
+  }
+
+  openColEdit(type, collectionId) {
+    const statePiece = type + "FormOpen";
+    return () => {
+      this.props.history.push("/edit/" + collectionId);
+      this.setState({
+      currentCollectionId: collectionId,
+      [statePiece]: true });
+    };
+  }
+
+  closeColEdit(type) {
+    const statePiece = type + "FormOpen";
+    return () => {
+      this.props.history.push("/collection/" + this.props.match.params.groupId);
+      this.setState({
+        currentCollectionId: undefined,
+        [statePiece]: false
+      });
+    }
   }
 
   openForm (type, collectionId) {
@@ -136,7 +157,7 @@ class Sidebar extends React.Component {
           }}>
           <EditCollection
             collectionId={this.state.currentCollectionId}
-            closeFn={this.closeForm("editCollection").bind(this)} />
+            closeFn={this.closeColEdit("editCollection").bind(this)} />
         </Modal>
       </div>
     );

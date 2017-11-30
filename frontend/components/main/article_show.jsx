@@ -10,7 +10,7 @@ export default ({ article, key }) => {
   return (
     <div className="article-show" key={key}>
     <div className="article-show-top">
-    <span>header bar thing</span>
+    <span>save btn placeholder</span>
     </div>
       <div className="inner-section">
         <div className="article-show-body">

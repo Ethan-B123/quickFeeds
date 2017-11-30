@@ -38,8 +38,10 @@ class ArticleIndex extends React.Component {
     if (groupType !== newGroupType || groupId !== newGroupId) {
       if (newGroupType === "feed") {
         this.onFeedChange(newGroupId);
-      } else {
+      } else if (newGroupType === "collection") {
         this.onCollectionChange(newGroupId)
+      } else {
+        this.setState({readyForArticles: false});
       }
     }
   }
@@ -109,15 +111,18 @@ class ArticleIndex extends React.Component {
       articlesArr = articlesArr.concat(newArticles);
     });
 
+    console.log("sorting");
     articlesArr.sort((a,b) => (
       b.publish_date - a.publish_date
     ));
 
-    const returnArticlesArr = articlesArr.map((article) => (
+    let returnArticlesArr = articlesArr.map((article) => (
       <ArticleIndexItem
         openFn={this.openShow.bind(this)}
         article={article} key={article.id}/>
     ));
+
+    returnArticlesArr = returnArticlesArr.slice(0, 100);
 
     returnArticlesArr.unshift(
       <h1 key="title" className="article-head">{collection.name}</h1>

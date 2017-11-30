@@ -49,8 +49,9 @@ class AddFeed extends React.Component {
 
     return (
       <div onClick={tryCloseClick} className="new-feed-form-container close-on-click">
-        <form>
-          <label htmlFor="new-feed-input">New Feed Url:</label>
+      <div className="full-bar">
+      <div className="edit-collection-form">
+          <h3 className="col-edit-title">New Feed Url:</h3>
           <ul>
             { errors.map((err) => <li key={err}>{err}</li>) }
           </ul>
@@ -59,7 +60,8 @@ class AddFeed extends React.Component {
             type="text" id="new-feed-input"
           />
           <button disabled={loading} onClick={tryNewFeed} type="submit">Add Feed</button>
-        </form>
+          </div>
+          </div>
       </div>
     )
   }

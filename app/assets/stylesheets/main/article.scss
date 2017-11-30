@@ -2,6 +2,32 @@
 @import "vars";
 
 
+
+.top-nav button, .edit-collection-form button {
+  font-size: 14px;
+  margin: 5px;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  // transition: 0.3s background-color ease;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #fff;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: $darkGray;
+}
+.edit-collection-form button {
+  min-height: 30px;
+}
+
+.top-nav button:hover, .edit-collection-form button:hover {
+  cursor: pointer;
+  background-color: $lightGray;
+}
+
 .article-head {
   padding: 0px 22px;
   margin-top: 52px;

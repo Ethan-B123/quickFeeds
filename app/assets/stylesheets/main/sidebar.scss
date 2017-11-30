@@ -1,6 +1,19 @@
 @import "colors";
 @import "vars";
 
+.top-level-link {
+  display: flex;
+  box-sizing: border-box;
+  padding: 2px 20px;
+  text-decoration: none;
+  color: #868689;
+  cursor: pointer;
+  font-weight: 300;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .sidebar-container {
   top: 0px;
   width: $sidebarWidth;
