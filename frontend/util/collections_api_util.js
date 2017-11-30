@@ -5,6 +5,13 @@ export const fetchCollections = () => (
   })
 );
 
+export const getFullCollection = (id) => (
+  $.ajax({
+    mathod: "get",
+    url: "/api/collections/full/" + id
+  })
+)
+
 export const createCollection = (collection) => (
   $.ajax({
     method: "post",

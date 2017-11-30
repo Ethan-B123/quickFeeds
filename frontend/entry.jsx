@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 
 
 import * as APIUtil from "./util/APIUtil"
+import * as CollectionApiUtil from "./util/collections_api_util";
 import * as FeedApiUtil from "./util/feed_api_util"
 import * as SessionActions from "./actions/session_actions"
 import * as FeedActions from "./actions/feed_actions"
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.SessionActions = SessionActions;
   window.FeedActions = FeedActions;
   window.CollectionActions = CollectionActions;
+  window.CollectionApiUtil = CollectionApiUtil;
   // window.signup = signup;
   // window.login = login;
   // window.logout = logout;

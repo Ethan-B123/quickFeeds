@@ -1,3 +1,4 @@
+json.set! :feeds, {}
 json.set! :feeds do
   @feeds.each do |feed|
     json.set! feed.id do
@@ -5,6 +6,7 @@ json.set! :feeds do
     end
   end
 end
+json.set! :articles, {}
 json.set! :articles do
   @articles.each do |article|
     json.set! article.id do
@@ -12,8 +14,9 @@ json.set! :articles do
     end
   end
 end
+json.set! :feedArticles, {}
 json.set! :feedArticles do
   @feeds.each do |feed|
-    json.set! feed.id, @articles.map { |article| article.id }
+    json.set! feed.id, feed.articles.map { |article| article.id }
   end
 end

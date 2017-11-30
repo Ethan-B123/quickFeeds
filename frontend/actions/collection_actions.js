@@ -2,10 +2,16 @@ import * as collectionApiUtil from "../util/collections_api_util"
 
 export const RECEIVE_ALL_COLLECTIONS = 'RECEIVE_ALL_COLLECTIONS';
 export const RECEIVE_COLLECTION = 'RECEIVE_COLLECTION';
+export const RECEIVE_COLLECTION_FULL = 'RECEIVE_COLLECTION_FULL';
 
 export const receiveAllCollections = (collections) => ({
   type: RECEIVE_ALL_COLLECTIONS,
   collections
+});
+
+export const receiveCollectionFull = (collectionFull) => ({
+  type: RECEIVE_COLLECTION_FULL,
+  collectionFull
 });
 
 export const receiveCollection = (collection) => ({
@@ -26,6 +32,14 @@ export const createCollection = (collection, successCb, failCb) => dispatch => (
     }
   )
 )
+
+export const fetchCollectionFull = (id) => dispatch => (
+  collectionApiUtil.getFullCollection(id).then(
+    (response) => {
+      dispatch(receiveCollectionFull(response))
+    }
+  )
+);
 
 export const fetchCollections = () => dispatch => (
   collectionApiUtil.fetchCollections().then(

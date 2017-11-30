@@ -58,9 +58,16 @@ class Sidebar extends React.Component {
 
   closeForm (type) {
     const statePiece = type + "FormOpen";
-    return () => this.setState({
-      currentCollectionId: undefined,
-      [statePiece]: false });
+    return () => {
+      if (this.props.match.params.groupType === "collection" &&
+        this.props.match.params.groupId) {
+        this.props.fetchCollectionFull(this.props.match.params.groupId);
+      }
+      this.setState({
+        currentCollectionId: undefined,
+        [statePiece]: false
+      });
+    }
   }
 
   // <ul className="feed-list">

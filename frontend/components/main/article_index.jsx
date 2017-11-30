@@ -21,8 +21,13 @@ class ArticleIndex extends React.Component {
   }
 
   componentWillMount() {
-    const groupId = this.props.match.params.groupId
-    this.onFeedChange(groupId);
+    const groupType = this.props.match.params.groupType;
+    const groupId = this.props.match.params.groupId;
+    if (groupType === "feed") {
+      this.onFeedChange(groupId);
+    } else if (groupType === "collection") {
+      this.onCollectionChange(groupId);
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -33,7 +38,6 @@ class ArticleIndex extends React.Component {
     if (groupType !== newGroupType || groupId !== newGroupId) {
       if (newGroupType === "feed") {
         this.onFeedChange(newGroupId);
-        console.log(this.props);
       } else {
         this.onCollectionChange(newGroupId)
       }
@@ -49,7 +53,7 @@ class ArticleIndex extends React.Component {
       this.setState({ readyForArticles: true });
     }, fadeoutLength);
     // TODO: this.props.fetchColectionData(collectionId).then(
-    this.props.fetchFeedData(newGroupId).then(
+    this.props.fetchCollectionFull(newGroupId).then(
       () => this.setState({ groupId: newGroupId })
     );
 
@@ -76,28 +80,53 @@ class ArticleIndex extends React.Component {
     this.props.history.push({ search: "" });
   }
 
-  getCollectionArray(collection) {
+  getCollectionArray() {
+    const groupId = this.state.groupId;
+    const readyForArticles = this.state.readyForArticles;
+    const collection = this.props.collections[groupId]
+    if (groupId === undefined ||
+      !readyForArticles ||
+      collection === undefined) {
+      return [];
+    }
+    if (collection.feeds.length === 0) {
+      return [<h1 key="title" className="article-head">Click the gear to add feeds</h1>,
+      <div key="backdrop" className="backdrop"></div>]
+
+    }
     const allFeeds = this.props.feeds;
     const feedArticles = this.props.feedArticles;
     const articles = this.props.articles;
     const feeds = collection.feeds.map((feedId) => allFeeds[feedId]);
     let articlesArr = [];
     feeds.forEach((feed) => {
+      if (feedArticles[feed.id.toString()] === undefined) {
+        return undefined
+      }
       const newArticles = feedArticles[feed.id.toString()].map((articleId) =>(
         articles[articleId]
       ));
-      articlesArr += newArticles
+      articlesArr = articlesArr.concat(newArticles);
     });
 
     articlesArr.sort((a,b) => (
       b.publish_date - a.publish_date
     ));
 
-    return articlesArr.map((article) => (
+    const returnArticlesArr = articlesArr.map((article) => (
       <ArticleIndexItem
         openFn={this.openShow.bind(this)}
         article={article} key={article.id}/>
     ));
+
+    returnArticlesArr.unshift(
+      <h1 key="title" className="article-head">{collection.name}</h1>
+    )
+    returnArticlesArr.push(
+      <div key="backdrop" className="backdrop"></div>
+    );
+
+    return returnArticlesArr;
   }
 
   getFeedArray() {
@@ -107,7 +136,6 @@ class ArticleIndex extends React.Component {
       return [];
     }
 
-    // debugger;
     const articles = this.props.feedArticles[groupId].map((articleId)=>{
       const article = this.props.articles[articleId];
       return (
@@ -125,6 +153,16 @@ class ArticleIndex extends React.Component {
     return (articles);
   }
 
+  getArticles() {
+    if (this.state.groupType === "feed") {
+      return this.getFeedArray();
+    } else if (this.state.groupType === "collection") {
+      return this.getCollectionArray();
+    } else {
+      return [];
+    }
+  }
+
   articleShow() {
     const articles = this.props.articles;
     const keys = Object.keys(articles)
@@ -136,7 +174,6 @@ class ArticleIndex extends React.Component {
       return [];
     }
     const article = articles[articleId];
-    // debugger;
     return (
       [<ArticleShow
         key={articleId} article={article} />]
@@ -158,7 +195,7 @@ class ArticleIndex extends React.Component {
           transitionName="article"
           transitionEnterTimeout={300}
           transitionLeaveTimeout={200}>
-          {this.getFeedArray()}
+          {this.getArticles()}
           </ReactCSSTransitionGroup>
           <ReactCSSTransitionGroup
           component="div"
@@ -176,7 +213,7 @@ class ArticleIndex extends React.Component {
           </ReactCSSTransitionGroup>
         </div>
         <div className="loading-container">
-          <LoadingString className="test" />
+          <LoadingString />
         </div>
       </div>
     );

@@ -15,7 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchFeedData: (id) => dispatch(FeedActions.fetchFeedData(id)),
   fetchAllFeeds: (id) => dispatch(FeedActions.fetchAllFeeds()),
   fetchCollections: (id) => dispatch(CollectionActions.fetchCollections()),
-  createCollection: (name) => dispatch( CollectionActions.createCollection({name: name}))
+  createCollection: (name) => dispatch( CollectionActions.createCollection({name: name})),
+  fetchCollectionFull:
+    (id) => dispatch( CollectionActions.fetchCollectionFull(id) )
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));
