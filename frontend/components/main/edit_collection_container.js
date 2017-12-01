@@ -4,7 +4,6 @@ import EditCollection from "./edit_collection";
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = ({ feeds, collections }, ownProps) => {
-  // debugger;
   return {
   closeFn: ownProps.closeFn,
   collection: collections[ownProps.collectionId],

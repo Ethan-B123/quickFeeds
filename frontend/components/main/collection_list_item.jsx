@@ -44,16 +44,23 @@ class CollectionListItem extends React.Component {
             aria-hidden="true"></i>
           </div>
           <div className="collection-title">
-            <Link to={"/collection/" + collection.id}>{collection.name}</Link>
+            { openEditor ?
+              <Link to={"/collection/" + collection.id}>{collection.name}</Link> :
+              <span>{collection.name}</span>
+
+            }
           </div>
 
+          { openEditor ?
           <div
           onClick={openEditor}
           className="single-center">
             <i
             className="fa fa-cog icon"
             aria-hidden="true"></i>
-          </div>
+          </div> :
+          ""
+          }
         </div>
         <ul className={this.state.closed ? "shrinker closed" : "shrinker"}>
           {feedList}

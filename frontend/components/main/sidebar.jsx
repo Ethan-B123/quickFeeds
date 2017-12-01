@@ -35,15 +35,23 @@ class Sidebar extends React.Component {
   }
 
   renderCollections() {
-    // debugger;
+    const allFeeds = Object.keys(this.props.feedObjects);
+    const collectionArray = this.props.collections.map((collection)=>(
+      <CollectionListItem
+      key={collection.id}
+      collection={collection}
+      feeds={this.props.feedObjects}
+      openEditor={this.openColEdit("editCollection", collection.id).bind(this)} />
+    ))
+    collectionArray.unshift(
+      <CollectionListItem
+      key={0}
+      collection={{id: 0, name: "All Feeds", feeds: allFeeds}}
+      feeds={this.props.feedObjects}
+      openEditor={false} />
+    )
     return (
-      this.props.collections.map((collection)=>(
-        <CollectionListItem
-        key={collection.id}
-        collection={collection}
-        feeds={this.props.feedObjects}
-        openEditor={this.openColEdit("editCollection", collection.id).bind(this)} />
-      ))
+      collectionArray
     );
   }
 

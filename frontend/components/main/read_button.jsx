@@ -14,10 +14,10 @@ class ReadButton extends React.Component {
       <div>
         { keys.includes(articleId) ?
           <button onClick={() => deleteRead(articleId)}>
-          <span>remove read</span>
+          <span>Remove Save</span>
           </button> :
           <button onClick={() => createRead(articleId)}>
-          <span>add read</span>
+          <span>Save</span>
           </button>
         }
       </div>

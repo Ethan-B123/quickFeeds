@@ -43,7 +43,6 @@ class EditCollection extends React.Component {
     const collection = this.state.collection;
     const feedKeys = Object.keys(this.props.feeds);
     const feeds = this.props.feeds;
-    // debugger;
 
     return (
       <div onClick={tryCloseClick} className="new-feed-form-container close-on-click">

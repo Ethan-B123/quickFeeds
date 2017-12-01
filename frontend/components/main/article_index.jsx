@@ -128,7 +128,6 @@ class ArticleIndex extends React.Component {
       articlesArr = articlesArr.concat(newArticles);
     });
 
-    console.log("sorting");
     articlesArr.sort((a,b) => (
       b.publish_date - a.publish_date
     ));

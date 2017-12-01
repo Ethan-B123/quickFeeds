@@ -40,7 +40,6 @@ class Feed < ApplicationRecord
       return feed
     rescue
       # use most recent articles from feed
-      puts "rescued"
       return nil
     end
   end

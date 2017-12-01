@@ -48,7 +48,8 @@
   min-width: 100%;
 }
 
-.feed-list a {
+.feed-list a,
+.collection-title > span {
   box-sizing: border-box;
   display: block;
   padding: 2px 20px;
@@ -147,6 +148,9 @@ a.collection-item {
   justify-content: flex-start;
 }
 
+.collection-title > a:hover {
+  text-decoration: underline;
+}
 .collection-title {
   padding: 0px 6px;
   flex-grow: 1;

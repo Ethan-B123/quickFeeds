@@ -32,7 +32,6 @@ class AddCollection extends React.Component {
     if (classArr.includes("close-on-click")) {
       this.props.closeFn();
       setTimeout(() => {
-        console.log(this.props);
         this.props.clearErrors();
       }, fadeoutLength);
     }

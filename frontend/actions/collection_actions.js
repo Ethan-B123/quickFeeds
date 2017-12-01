@@ -26,8 +26,6 @@ export const createCollection = (collection, successCb, failCb) => dispatch => (
       successCb && successCb();
     },
     (errors) => {
-      console.log("couldn't createCollection");
-      console.log(errors);
       failCb && failCb()
     }
   )
@@ -45,10 +43,6 @@ export const fetchCollections = () => dispatch => (
   collectionApiUtil.fetchCollections().then(
     (response) => {
       dispatch(receiveAllCollections(response));
-    },
-    (errors) => {
-      console.log("couldn't receiveAllCollections");
-      console.log(errors);
     }
   )
 )
