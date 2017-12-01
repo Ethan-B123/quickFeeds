@@ -1,6 +1,10 @@
 @import "colors";
 @import "vars";
 
+
+.top-level-link:hover {
+  background-color: $lightMidGray;
+}
 .top-level-link {
   display: flex;
   box-sizing: border-box;
