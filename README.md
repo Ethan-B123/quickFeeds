@@ -63,3 +63,9 @@ def find_alias(prop, rss_item, *aliases)
   false
 end
 ```
+
+
+## Work in progress
+ * infinite scroll
+ * delete old articles from databse
+ * asynchronous calls to feed urls from rails backend
