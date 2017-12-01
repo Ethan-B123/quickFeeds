@@ -9,6 +9,7 @@ import * as CollectionApiUtil from "./util/collections_api_util";
 import * as FeedApiUtil from "./util/feed_api_util"
 import * as SessionActions from "./actions/session_actions"
 import * as FeedActions from "./actions/feed_actions"
+import * as readActions from "./actions/read_actions"
 import * as CollectionActions from "./actions/collection_actions";
 
 import {
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // window.SessionActions = SessionActions;
   window.FeedActions = FeedActions;
+  window.readActions = readActions;
   window.CollectionActions = CollectionActions;
   window.CollectionApiUtil = CollectionApiUtil;
   // window.signup = signup;
