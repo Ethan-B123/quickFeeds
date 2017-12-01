@@ -62,8 +62,11 @@
   margin-top: 30px;
 }
 .article-show-body > sub {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
   margin-top: 30px;
+  font-weight: 300;
+  color: $midGray;
 }
 
 .link-button {

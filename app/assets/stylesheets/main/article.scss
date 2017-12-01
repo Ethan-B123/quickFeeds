@@ -3,7 +3,10 @@
 
 
 
-.top-nav button, .edit-collection-form button {
+.top-nav a,
+.top-nav button,
+.article-show-top button,
+.edit-collection-form button {
   font-size: 14px;
   margin: 5px;
   padding: 0px 20px;
@@ -19,6 +22,20 @@
   font-family: 'Roboto', sans-serif;
   color: $darkGray;
 }
+.article-show-top button {
+  padding: 10px 20px;
+  
+}
+
+.top-nav button {
+  display: flex;
+  align-items: center;
+}
+.top-nav a {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
 .edit-collection-form button {
   min-height: 30px;
   /* box-sizing: border-box; */
@@ -33,7 +50,10 @@
   padding: 5px;
   font-size: 13px;
 }
-.top-nav button:hover, .edit-collection-form button:hover {
+.top-nav a:hover,
+.top-nav button:hover,
+.article-show-top button:hover,
+.edit-collection-form button:hover {
   cursor: pointer;
   background-color: $lightGray;
 }

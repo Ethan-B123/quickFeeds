@@ -9,18 +9,18 @@ export const receiveReadArticles = (articles) => ({
 
 export const fetchReads = () => dispatch => (
   readApiUtil.fetchReads().then(
-    (articlesArr) => dispatch(receiveReadArticles(articlesArr))
+    (reads) => dispatch(receiveReadArticles(reads))
   )
 );
 
 export const createRead = (article_id) => dispatch => (
   readApiUtil.createRead(article_id).then(
-    (articlesArr) => dispatch(receiveReadArticles(articlesArr))
+    (reads) => dispatch(receiveReadArticles(reads))
   )
 );
 
 export const deleteRead = (article_id) => dispatch => (
   readApiUtil.deleteRead(article_id).then(
-    (articlesArr) => dispatch(receiveReadArticles(articlesArr))
+    (reads) => dispatch(receiveReadArticles(reads))
   )
 );

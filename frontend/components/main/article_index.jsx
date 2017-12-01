@@ -23,10 +23,13 @@ class ArticleIndex extends React.Component {
   componentWillMount() {
     const groupType = this.props.match.params.groupType;
     const groupId = this.props.match.params.groupId;
+    this.props.fetchReads()
     if (groupType === "feed") {
       this.onFeedChange(groupId);
     } else if (groupType === "collection") {
       this.onCollectionChange(groupId);
+    } else if (groupType === "read") {
+      this.onReadChange(groupId);
     }
   }
 
@@ -40,6 +43,8 @@ class ArticleIndex extends React.Component {
         this.onFeedChange(newGroupId);
       } else if (newGroupType === "collection") {
         this.onCollectionChange(newGroupId)
+      } else if (newGroupType === "read") {
+        this.onReadChange(newGroupId);
       } else {
         this.setState({readyForArticles: false});
       }
@@ -58,7 +63,6 @@ class ArticleIndex extends React.Component {
     this.props.fetchCollectionFull(newGroupId).then(
       () => this.setState({ groupId: newGroupId })
     );
-
   }
 
   onFeedChange(newGroupId) {
@@ -70,6 +74,19 @@ class ArticleIndex extends React.Component {
       this.setState({ readyForArticles: true });
     }, fadeoutLength);
     this.props.fetchFeedData(newGroupId).then(
+      () => this.setState({ groupId: newGroupId })
+    );
+  }
+
+  onReadChange(newGroupId) {
+    this.setState({
+      groupType: "read",
+      groupId: undefined,
+      readyForArticles: false });
+    setTimeout(() => {
+      this.setState({ readyForArticles: true });
+    }, fadeoutLength);
+    this.props.fetchReads().then(
       () => this.setState({ groupId: newGroupId })
     );
   }
@@ -158,11 +175,38 @@ class ArticleIndex extends React.Component {
     return (articles);
   }
 
+  getReadArray() {
+    const groupId = this.state.groupId;
+    const readyForArticles = this.state.readyForArticles;
+    if (groupId === undefined || !readyForArticles) {
+      return [];
+    }
+
+    const articles = Object.values(this.props.reads.objects)
+    .reverse()
+    .map((article)=>{
+      return (
+        <ArticleIndexItem
+          openFn={this.openShow.bind(this)}
+          article={article} key={article.id}/>
+      );
+    });
+    articles.unshift(
+      <h1 key="title" className="article-head">Saved Articles</h1>
+    )
+    articles.push(
+      <div key="backdrop" className="backdrop"></div>
+    );
+    return (articles);
+  }
+
   getArticles() {
     if (this.state.groupType === "feed") {
       return this.getFeedArray();
     } else if (this.state.groupType === "collection") {
       return this.getCollectionArray();
+    } else if (this.state.groupType === "read") {
+      return this.getReadArray();
     } else {
       return [];
     }
