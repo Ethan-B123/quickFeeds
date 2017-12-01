@@ -8,6 +8,10 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :collections
+  has_many :reads
+  has_many :articles,
+    through: :reads,
+    source: :article
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
