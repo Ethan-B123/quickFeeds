@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import ReadButton from "./read_button_container";
 
 export default ({ article, key }) => {
   const image = article.image === "No image data available" ?
@@ -10,7 +11,7 @@ export default ({ article, key }) => {
   return (
     <div className="article-show" key={key}>
     <div className="article-show-top">
-    <span>save btn placeholder</span>
+    <ReadButton articleId={article.id} />
     </div>
       <div className="inner-section">
         <div className="article-show-body">

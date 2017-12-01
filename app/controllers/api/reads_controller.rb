@@ -5,6 +5,7 @@ class Api::ReadsController < ApplicationController
 
   def create
     @read = Read.new(read_params)
+    @read.user_id = current_user.id
     if @read.save
       @reads = current_user.reads
       render :index
