@@ -1,6 +1,6 @@
 # quickFeeds
 
-### [Live site](https://www.google.com "quickFeeds")
+### [Live site](https://quickfeeds.herokuapp.com/#/feed/1 "quickFeeds")
 
 quickFeeds is a RSS feed parsing site. Users can add RSS URLs, create
 feed collections, and browse through articles.

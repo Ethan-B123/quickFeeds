@@ -22,7 +22,6 @@ class Feed < ApplicationRecord
       newFeed = Feed.new({ url: url })
       if new_articles = newFeed.fetch_data
         Article.create(new_articles)
-        # newFeed.save
         return newFeed
       end
     end
