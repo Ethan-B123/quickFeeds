@@ -24,7 +24,7 @@
 }
 .article-show-top button {
   padding: 10px 20px;
-  
+
 }
 
 .top-nav button {
@@ -139,6 +139,7 @@
   min-height: 100%;
 }
 .article-image-container {
+  background-color: $teal;
   border-radius: 6px;
   box-shadow: 0px 0px 6px 1px $clearGrey;
   height: 80px;
